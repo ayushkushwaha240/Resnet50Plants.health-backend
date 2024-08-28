@@ -12,7 +12,7 @@ app = FastAPI()
 model = tf.keras.models.load_model('path_to_your_model/resnet50_model.h5')
 
 # Define class labels
-class_labels = ['Label1', 'Label2', 'Label3', 'Label4', 'Label5', 'Label6', 'Label7', 'Label8']
+class_labels = ['Healthy', 'Powdery', 'Rust']
 
 @app.get("/", response_class=HTMLResponse)
 async def get_html():
