@@ -5,11 +5,12 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import preprocess_input
 import numpy as np
 from io import BytesIO
+from helper import load_model
 
 app = FastAPI()
 
 # Load the model
-model = tf.keras.models.load_model('path_to_your_model/resnet50_model.h5')
+model = tf.keras.models.load_model('plantdesiesepredictionResnet50.h5')
 
 # Define class labels
 class_labels = ['Healthy', 'Powdery', 'Rust']

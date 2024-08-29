@@ -9,6 +9,7 @@ def load_model():
     output = 'plantdesiesepredictionResnet50.h5'  # Output file name
     gdown.download(url, output, quiet=False)
     model = tf.keras.models.load_model('plantdesiesepredictionResnet50.h5')
+    return model
     
 def predict(model, img_path):
     # Load and preprocess the image
