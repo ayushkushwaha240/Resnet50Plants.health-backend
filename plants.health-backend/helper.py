@@ -1,11 +1,9 @@
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img
 import numpy as np
-import requests
 from io import BytesIO
 from PIL import Image
 # from down import download
-import os
 
 def read_imagefile(file) -> Image.Image:
     image = Image.open(BytesIO(file))
