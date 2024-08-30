@@ -1,20 +1,25 @@
 import tensorflow as tf
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.resnet50 import preprocess_input
+from tensorflow.keras.preprocessing.image import load_img
 import numpy as np
 import requests
+from io import BytesIO
+from PIL import Image
+# from down import download
+import os
+
+def read_imagefile(file) -> Image.Image:
+    image = Image.open(BytesIO(file))
+    return image
 
 def load_model():
     model = tf.keras.models.load_model('plantdesiesepredictionResnet50.h5')
+    print("model loaded")
     return model
     
-def predict(model, img_path):
-    # Load and preprocess the image
-    img = image.load_img(img_path, target_size=(224, 224))
-    x = image.img_to_array(img)
-    x = np.expand_dims(x, axis=0)
-    x = preprocess_input(x)
-    
-    # Make a prediction
-    predictions = model.predict(x)
-    return predictions
+def pred(model,image: Image.Image):
+    if model is None:
+        model = load_model()
+    image = np.asarray(image.resize((224, 224)))[..., :3]
+    image = np.expand_dims(image, 0)
+    image = image / 127.5 - 1.0
+    return model.predict(image)
